@@ -1,0 +1,38 @@
+// =====================================================
+// FILE: tb_top_module.v
+// Testbench
+// =====================================================
+
+`timescale 1ns / 1ps
+
+module tb_top_module;
+
+reg [7:0] sw;
+
+wire boot_led;
+wire block_led;
+wire [7:0] led;
+
+top_module uut(
+    .sw(sw),
+    .boot_led(boot_led),
+    .block_led(block_led),
+    .led(led)
+);
+
+initial begin
+
+    sw = 8'b00001111;
+    #100;
+
+    sw = 8'b11110000;
+    #100;
+
+    sw = 8'b10101010;
+    #100;
+
+    $finish;
+
+end
+
+endmodule
